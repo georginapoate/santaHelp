@@ -18,13 +18,13 @@ public class Child {
 
     public String obtainElf() {
         return elf;
-    }
+    }  // changed name so it doesn't show at output (bcs getter)
 
     public void setElf(String elf) {
         this.elf = elf;
     }
 
-    // adaugam aici si campurile pentru output:
+    // adding these fields for output:
 
     private Double averageScore;
     private ArrayList<Double> niceScoreHistory;
@@ -73,7 +73,7 @@ public class Child {
 
     public Double obtainNiceScore() {
         return niceScore;
-    }
+    }  // changed name from getter, so it doesn't show
 
     public void setNiceScore(Double niceScore) {
         this.niceScore = niceScore;

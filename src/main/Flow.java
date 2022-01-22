@@ -67,12 +67,12 @@ public class Flow {
                         bestGift = g;
                     }
                 }
-                System.out.println(c.getFirstName() + " " + kidBudget);
+//                System.out.println(c.getFirstName() + " " + kidBudget);
                 if (bestGift != null) {
                     allPreferences.add(bestGift);
                     bestGift.setQuantity(bestGift.obtainQuantity()-1);
                     kidBudget -= bestGift.getPrice();
-                    System.out.println( bestGift.getProductName() + " " + bestGift.obtainQuantity());
+//                    System.out.println( bestGift.getProductName() + " " + bestGift.obtainQuantity());
                 }
             }
             c.setReceivedGifts(allPreferences);
@@ -92,7 +92,7 @@ public class Flow {
             ArrayList<Child> updChildren = year.getChildrenUpdates();
             for (var upc : updChildren) {
                 if (upc.getId().equals(c.getId())) {
-                    c.update(upc);
+                    c.update(upc);  // Observer
                 }
             }
         }
@@ -129,20 +129,19 @@ public class Flow {
         ArrayList<Child> outChildren = new ArrayList<>();
         this.children = this.parser.getInitialData().getChildren();
         this.santaGifts = this.parser.getInitialData().getSantaGiftsList();
-        checkForAdults();
-        setNiceScoreList();
+        checkForAdults();  // eliminates 18+ people
+        setNiceScoreList(); // initializes the niceScoreHistory for the children
         calcBudgetUnit(this.parser.getSantaBudget());
-        calcAssignedBudget();
-        elfBudget();
-        strategyChoice("id");  // pentru primul an, strategia e ID-ul copilului
-        giftsForKids(this.santaGifts);
-        ElfVisitor yellow = new ElfYellow(this.santaGifts);
+        calcAssignedBudget();  // calculates the assigned budget for each kid
+        elfBudget();  // adjusted budget based on elfType
+        strategyChoice("id");  // first year - idComparator
+        giftsForKids(this.santaGifts);  // gives children their gifts
+        ElfVisitor yellow = new ElfYellow(this.santaGifts);  // checks who doesnt have gifts, tries giving them one
         for (var c: this.children) {
-            c.acceptElf(yellow);
+            c.acceptElf(yellow);  // visitor here
             outChildren.add(c.copyChild());
         }
-        yearOne.setChildren(outChildren);
-        System.out.println("___roundzero___");
+        yearOne.setChildren(outChildren);  // sets the ArrayList<Child> for the first year for output
         this.outData = new OutData();
         this.outData.update(yearOne);
     }
@@ -164,7 +163,7 @@ public class Flow {
             calcBudgetUnit(y.getNewSantaBudget());
             calcAssignedBudget();
             elfBudget();
-            updateGifts(y);
+            updateGifts(y);  // add to the previous gifts new ones from the y year
             strategyChoice(y.getStrategy());
 //            for (var g : this.santaGifts) {
 //                System.out.println("before:" + g.getProductName() + g.obtainQuantity());

@@ -1,7 +1,5 @@
 package main;
 
-import java.util.Comparator;
-
 public class Gift {
     private String productName;
     private Double price;
@@ -34,17 +32,9 @@ public class Gift {
 
     public Integer obtainQuantity() {
         return quantity;
-    }
+    }  // don't want to show it at output, changed name from getter
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-}
-
-class priceComparator implements Comparator<Gift> {
-    @Override
-    // cel mai scump:
-    public int compare(Gift o1, Gift o2) {
-        return o1.getPrice().compareTo(o2.getPrice());
     }
 }

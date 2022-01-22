@@ -25,17 +25,17 @@ public final class Main {
      */
     public static void main(final String[] args) throws IOException {
         new File("output").mkdirs();
-//        for (int i = 1; i <= Constants.TESTS_NUMBER; i++) {
+        for (int i = 1; i <= Constants.TESTS_NUMBER; i++) {
             ObjectMapper objectMapper = new ObjectMapper();
-            Parser parser = objectMapper.readValue(new File("tests/test" + 28 + ".json"), Parser.class);
+            Parser parser = objectMapper.readValue(new File("tests/test" + i + ".json"), Parser.class);
             Flow flow = new Flow(parser);
             flow.roundZero();
             ArrayList<AnnualChanges> years = new ArrayList<>(parser.getAnnualChanges());
             flow.annualRounds();
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-            objectMapper.writeValue(new File(Constants.OUTPUT_PATH + 28
+            objectMapper.writeValue(new File(Constants.OUTPUT_PATH + i
                     + Constants.FILE_EXTENSION), flow.getOutData());
-//        }
+        }
         Checker.calculateScore();
     }
 }
