@@ -27,7 +27,8 @@ public final class Main {
         new File("output").mkdirs();
         for (int i = 1; i <= Constants.TESTS_NUMBER; i++) {
             ObjectMapper objectMapper = new ObjectMapper();
-            Parser parser = objectMapper.readValue(new File("tests/test" + i + ".json"), Parser.class);
+            Parser parser = objectMapper.readValue(new File("tests/test"
+                    + i + ".json"), Parser.class);
             Flow flow = new Flow(parser);
             flow.roundZero();
             ArrayList<AnnualChanges> years = new ArrayList<>(parser.getAnnualChanges());

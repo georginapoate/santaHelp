@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import static common.Constants.KID_AGE;
+import static common.Constants.TEEN_AGE;
+import static common.Constants.ADULT_AGE;
+import static common.Constants.PERCENT;
+import static common.Constants.HIGHEST_SCORE;
+
 public class Child {
     private Integer id;
     private String lastName;
@@ -16,117 +22,198 @@ public class Child {
     private String elf;
 
 
-    public String obtainElf() {
-        return elf;
-    }  // changed name so it doesn't show at output (bcs getter)
-
-    public void setElf(String elf) {
-        this.elf = elf;
-    }
-
     // adding these fields for output:
-
     private Double averageScore;
+
     private ArrayList<Double> niceScoreHistory;
     private Double assignedBudget;
     private ArrayList<Gift> receivedGifts;
 
+    /**
+     * @return kid elf
+     */
+    public String obtainElf() {
+        return elf;
+    }  // changed name so it doesn't show at output (bcs getter)
+
+    /**
+     * @param elf
+     */
+    public void setElf(final String elf) {
+        this.elf = elf;
+    }
+
+    /**
+     * @return child's ID
+     */
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    /**
+     * @param id
+     */
+    public void setId(final Integer id) {
         this.id = id;
     }
 
+    /**
+     * @return
+     */
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    /**
+     * @param lastName
+     */
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * @return
+     */
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    /**
+     * @param firstName
+     */
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * @return
+     */
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    /**
+     * @param city
+     */
+    public void setCity(final String city) {
         this.city = city;
     }
 
+    /**
+     * @return
+     */
     public Integer getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    /**
+     * @param age
+     */
+    public void setAge(final Integer age) {
         this.age = age;
     }
 
+    /**
+     * @return
+     */
     public Double obtainNiceScore() {
         return niceScore;
-    }  // changed name from getter, so it doesn't show
+    }
 
-    public void setNiceScore(Double niceScore) {
+    /**
+     * @param niceScore
+     */
+    public void setNiceScore(final Double niceScore) {
         this.niceScore = niceScore;
     }
 
+    /**
+     * @return
+     */
     public ArrayList<String> getGiftsPreferences() {
         return giftsPreferences;
     }
 
-    public void setGiftsPreferences(ArrayList<String> giftsPreferences) {
+    /**
+     * @param giftsPreferences
+     */
+    public void setGiftsPreferences(final ArrayList<String> giftsPreferences) {
         this.giftsPreferences = giftsPreferences;
     }
 
+    /**
+     * @return
+     */
     public Double getAverageScore() {
         return averageScore;
     }
 
-    public void setAverageScore(Double averageScore) {
+    /**
+     * @param averageScore
+     */
+    public void setAverageScore(final Double averageScore) {
         this.averageScore = averageScore;
     }
 
+    /**
+     * @return ScoreHistory
+     */
     public ArrayList<Double> getNiceScoreHistory() {
         return niceScoreHistory;
     }
 
-    public void setNiceScoreHistory(ArrayList<Double> niceScoreHistory) {
+    /**
+     * @param niceScoreHistory
+     */
+    public void setNiceScoreHistory(final ArrayList<Double> niceScoreHistory) {
         this.niceScoreHistory = niceScoreHistory;
     }
 
+    /**
+     * @return niceBonus
+     */
     public Integer obtainNiceScoreBonus() {
         return niceScoreBonus;
     }
 
-    public void setNiceScoreBonus(Integer niceScoreBonus) {
+    /**
+     * @param niceScoreBonus
+     */
+    public void setNiceScoreBonus(final Integer niceScoreBonus) {
         this.niceScoreBonus = niceScoreBonus;
     }
 
+    /**
+     * @return
+     */
     public Double getAssignedBudget() {
         return assignedBudget;
     }
 
-    public void setAssignedBudget(Double assignedBudget) {
+    /**
+     * @param assignedBudget
+     */
+    public void setAssignedBudget(final Double assignedBudget) {
         this.assignedBudget = assignedBudget;
     }
 
+    /**
+     * @return
+     */
     public ArrayList<Gift> getReceivedGifts() {
         return receivedGifts;
     }
 
-    public void setReceivedGifts(ArrayList<Gift> receivedGifts) {
+    /**
+     * @param receivedGifts
+     */
+    public void setReceivedGifts(final ArrayList<Gift> receivedGifts) {
         this.receivedGifts = receivedGifts;
     }
 
+    /**
+     * @return a copy of a child, used for the output
+     */
     public Child copyChild() {
         Child copiedChild = new Child();
         copiedChild.setId(this.getId());
@@ -142,6 +229,9 @@ public class Child {
         return copiedChild;
     }
 
+    /**
+     * removes repeating giftPreferences for a child
+     */
     public void removeDups() {
         ArrayList<String> gifts = new ArrayList<>();
         for (var gp : this.giftsPreferences) {
@@ -152,16 +242,19 @@ public class Child {
         this.giftsPreferences = gifts;
     }
 
+    /**
+     * calculates average score of child based on the niceScoreHistory (and also niceBonus)
+     */
     public void calcAvgScore() {
-        if (this.age < 5) {
-            this.averageScore = 10.0;
-        } else if (this.age >= 5 && this.age < 12) {
+        if (this.age < KID_AGE) {
+            this.averageScore = HIGHEST_SCORE;
+        } else if (this.age >= KID_AGE && this.age < TEEN_AGE) {
             Double avg = 0.0;
             for (var a : this.getNiceScoreHistory()) {
                 avg += a;
             }
             this.averageScore = avg / this.getNiceScoreHistory().size();
-        } else if (this.age >= 12 && this.age <= 18) {
+        } else if (this.age >= TEEN_AGE && this.age <= ADULT_AGE) {
             Double avg = 0.0;
             Integer sum = 0;
             for (int i = 0; i < this.getNiceScoreHistory().size(); i++) {
@@ -170,23 +263,33 @@ public class Child {
             }
             this.averageScore = avg / sum;
         }
-        this.setAverageScore(this.getAverageScore() + this.getAverageScore() * this.obtainNiceScoreBonus() / 100);
-        if (this.getAverageScore() > 10) {
-            this.setAverageScore(10.0);
+        this.setAverageScore(this.getAverageScore() + this.getAverageScore()
+                * this.obtainNiceScoreBonus() / PERCENT);
+        if (this.getAverageScore() > HIGHEST_SCORE) {
+            this.setAverageScore(HIGHEST_SCORE);
         }
     }
 
     // Visitor:
 
-    public void acceptElf(ElfVisitor elf) {
+    /**
+     * @param elf visitor
+     */
+    public void acceptElf(final ElfVisitor elf) {
         elf.visit(this);
     }
 
+    /**
+     *
+     */
     public void updateAge() {
         this.age += 1;
     }
 
-    public void update(Child updatedChild) {
+    /**
+     * @param updatedChild child with yearly update
+     */
+    public void update(final Child updatedChild) {
         if (updatedChild.obtainNiceScore() != null) {
             this.niceScoreHistory.add(updatedChild.obtainNiceScore());
         }
@@ -202,14 +305,14 @@ public class Child {
     }
 }
 
-class idComparator implements Comparator<Child> {
+class IdComparator implements Comparator<Child> {
     @Override
     public int compare(final Child o1, final Child o2) {
         return o1.getId().compareTo(o2.getId());
     }
 }
 
-class avgScoreComparator implements Comparator<Child> {
+class AvgScoreComparator implements Comparator<Child> {
 
     @Override
     public int compare(final Child o1, final Child o2) {
@@ -217,9 +320,9 @@ class avgScoreComparator implements Comparator<Child> {
     }
 }
 
-class cityComparator implements Comparator<Child> {
+class CityComparator implements Comparator<Child> {
     private HashMap<String, Double> cityScore;
-    cityComparator(ArrayList<Child> ch) {
+    CityComparator(final ArrayList<Child> ch) {
         HashMap<String, Integer> nrKidsInCity = new HashMap<>();
         cityScore = new HashMap<>();
         for (var c : ch) {
@@ -231,7 +334,7 @@ class cityComparator implements Comparator<Child> {
                 nrKidsInCity.put(c.getCity(), 1);
             }
         }
-        for(var entry : cityScore.entrySet()) {
+        for (var entry : cityScore.entrySet()) {
             String key = entry.getKey();
             Double value = entry.getValue();
             cityScore.put(key, value / nrKidsInCity.get(key));
@@ -239,7 +342,7 @@ class cityComparator implements Comparator<Child> {
     }
 
     @Override
-    public int compare(Child o1, Child o2) {
+    public int compare(final Child o1, final Child o2) {
         return cityScore.get(o2.getCity()).compareTo(cityScore.get(o1.getCity()));
     }
 }
@@ -247,7 +350,7 @@ class cityComparator implements Comparator<Child> {
 class CityNameComparator implements Comparator<Child> {
 
     @Override
-    public int compare(Child o1, Child o2) {
+    public int compare(final Child o1, final Child o2) {
         return o1.getCity().compareTo(o2.getCity());
     }
 }

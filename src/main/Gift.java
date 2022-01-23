@@ -6,35 +6,59 @@ public class Gift {
     private String category;
     private Integer quantity;
 
+    /**
+     * @return
+     */
     public String getProductName() {
         return productName;
     }
 
-    public void setProductName(String productName) {
+    /**
+     * @param productName
+     */
+    public void setProductName(final String productName) {
         this.productName = productName;
     }
 
+    /**
+     * @return
+     */
     public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    /**
+     * @param price
+     */
+    public void setPrice(final Double price) {
         this.price = price;
     }
 
+    /**
+     * @return
+     */
     public String getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    /**
+     * @param category
+     */
+    public void setCategory(final String category) {
         this.category = category;
     }
 
+    /**
+     * @return
+     */
     public Integer obtainQuantity() {
         return quantity;
     }  // don't want to show it at output, changed name from getter
 
-    public void setQuantity(Integer quantity) {
+    /**
+     * @param quantity
+     */
+    public void setQuantity(final Integer quantity) {
         this.quantity = quantity;
     }
 }

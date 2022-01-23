@@ -6,19 +6,31 @@ public class InitialData {
     private ArrayList<Child> children;
     private ArrayList<Gift> santaGiftsList;
 
+    /**
+     * @return
+     */
     public ArrayList<Child> getChildren() {
         return children;
     }
 
-    public void setChildren(ArrayList<Child> children) {
+    /**
+     * @param children
+     */
+    public void setChildren(final ArrayList<Child> children) {
         this.children = children;
     }
 
+    /**
+     * @return
+     */
     public ArrayList<Gift> getSantaGiftsList() {
         return santaGiftsList;
     }
 
-    public void setSantaGiftsList(ArrayList<Gift> santaGiftsList) {
+    /**
+     * @param santaGiftsList
+     */
+    public void setSantaGiftsList(final ArrayList<Gift> santaGiftsList) {
         this.santaGiftsList = santaGiftsList;
     }
 }

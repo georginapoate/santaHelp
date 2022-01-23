@@ -13,35 +13,59 @@ public class Parser {
     private InitialData initialData;
     private ArrayList<AnnualChanges> annualChanges;
 
+    /**
+     * @return
+     */
     public Integer getNumberOfYears() {
         return numberOfYears;
     }
 
-    public void setNumberOfYears(Integer numberOfYears) {
+    /**
+     * @param numberOfYears
+     */
+    public void setNumberOfYears(final Integer numberOfYears) {
         this.numberOfYears = numberOfYears;
     }
 
+    /**
+     * @return
+     */
     public Integer getSantaBudget() {
         return santaBudget;
     }
 
-    public void setSantaBudget(Integer santaBudget) {
+    /**
+     * @param santaBudget
+     */
+    public void setSantaBudget(final Integer santaBudget) {
         this.santaBudget = santaBudget;
     }
 
+    /**
+     * @return
+     */
     public InitialData getInitialData() {
         return initialData;
     }
 
-    public void setInitialData(InitialData initialData) {
+    /**
+     * @param initialData
+     */
+    public void setInitialData(final InitialData initialData) {
         this.initialData = initialData;
     }
 
+    /**
+     * @return
+     */
     public ArrayList<AnnualChanges> getAnnualChanges() {
         return annualChanges;
     }
 
-    public void setAnnualChanges(ArrayList<AnnualChanges> annualChanges) {
+    /**
+     * @param annualChanges
+     */
+    public void setAnnualChanges(final ArrayList<AnnualChanges> annualChanges) {
         this.annualChanges = annualChanges;
     }
 }
